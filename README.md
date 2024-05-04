@@ -1,3 +1,7 @@
+## Current Features
+
+### Remote Administration Tool (RAT)
+
 ### Usage
 
 1. **Login**: Users must first authenticate using valid credentials to access the RAT's features.
